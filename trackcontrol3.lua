@@ -29,24 +29,9 @@ for i = 0, num_tracks - 1 do
 end
 
 
---now based on the midi cc message received, solo or mute specific tracks
---current state is all mute/solo flags cleared except every folder is muted, then solo the one specified by the midi cc message
-
-
-local midi_events = reaper.JS_MIDI_GetRecentInputEvents(1, 0)
-for i=1, #midi_events do
-  local msg = midi_events[i].msg
-  local status = msg[1]
-  local cc_number = msg[2]
-  local cc_value = msg[3]
-  -- Use the cc_number and cc_value to decide what to do
-  reaper.ShowConsoleMsg("midi cc: " .. cc_number .. "\n")
-end
-
-
 -- Specify track number to solo (based on folder structure) 
 -- this approach means the project folders must be static and known ahead of time
-local tracks_to_solo = {2} -- Example: solo folder 2
+local tracks_to_solo = {9} -- Example: solo folder 2
 
 -- Get the number of tracks in the project
 local num_tracks = reaper.CountTracks(0)
